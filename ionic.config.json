@@ -1,0 +1,7 @@
+{
+  "name": "plainLogin",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
