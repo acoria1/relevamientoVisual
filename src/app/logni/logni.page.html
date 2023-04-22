@@ -1,0 +1,55 @@
+<ion-content [fullscreen]="true">
+  <div *ngIf="!attemptingSingIn;else spinner" class="container p-4" style="min-height: 100%;">
+    <div class="row">
+      <div class="col-12 h1 heading mt-4">
+        👋 Welcome
+      </div>
+      <div class="col-12 para ml-5">Sign in to continue!!</div>
+    </div>
+      <div class="row mt-5">
+        <div class="p-4 mb-4">
+          <app-custom-buttons *ngIf="mockUsersButtons.length > 0"  [buttons]="mockUsersButtons" (buttonClicked)="loadLoginForm($event)" [classWrapper]="'feature-container-login'" [columns]="3"></app-custom-buttons>
+        </div>
+        <form [formGroup]="loginForm" (ngSubmit)="handleLogIn()">
+          <ion-item class="mb-3" lines="full">
+            <ion-label position="floating">Email</ion-label>
+            <ion-input  type="email" placeholder="name@domain.com" formControlName="email" errorText="Invalid email" helperText="fill the email" legacy="true"></ion-input>
+            <ion-note *ngIf="loginForm.get('email')!.touched" slot="error">Invalid email format</ion-note>
+          </ion-item>
+          <ion-item class="mb-3" lines="full" errorText="Invalid password">
+            <ion-label position="floating">Password</ion-label>
+            <ion-input [type]="hidePassword? 'password':'text'" placeholder="**********" formControlName="password" helperText="fill the password" legacy="true"></ion-input>
+            <ion-button size="default" slot="end" fill="clear" (click)="togglePasswordVisibility()" class="pt-3 icon-button">
+              <ion-icon [name]="hidePassword ? 'eye-off-outline' : 'eye-outline' " color="primary" class="iconEye"></ion-icon>
+            </ion-button>
+          </ion-item>
+          <div class="signup-text">
+            I'm a new user&nbsp; <a class="mat-subheading-2" routerLink="/register" routerLinkActive="active">Sign Up?</a>
+          </div>
+          <div *ngIf="invalidCredentials" class="m-4 text-danger">
+            Login failed, please re-enter your credentials
+          </div>
+          <div class="mt-4">
+            <ion-button class="login-button mt-4 mb-3" type="submit" expand="block" [disabled]="!loginForm.valid || invalidCredentials">
+              Login
+            </ion-button>
+            <div class="separator mb-3 col-10 offset-1">Or</div>
+            <ion-button (click)="handleGoogleAuth()" class="google-button" expand="block" color="danger">
+              <ion-icon name="logo-google"></ion-icon>
+              &nbsp;&nbsp;Google Signin
+            </ion-button>
+          </div>
+        </form>
+    </div>
+  </div>
+  <ng-template #spinner>
+    <app-spinner [optionalMessage]="'Signing In'"></app-spinner>
+  </ng-template>
+</ion-content>
+<ion-footer color="white">
+  <ion-toolbar>
+    <p class="copyright">All rights reserved Ⓒ ACoria 2023</p>
+  </ion-toolbar>
+</ion-footer>
+  
+  

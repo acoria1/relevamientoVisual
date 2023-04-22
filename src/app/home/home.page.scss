@@ -25,3 +25,18 @@
 #container a {
   text-decoration: none;
 }
+
+.welcome-message {
+  text-align: center;
+  margin-top: 100px;
+}
+
+.welcome-message h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.welcome-message p {
+  font-size: 20px;
+  color: #666;
+}

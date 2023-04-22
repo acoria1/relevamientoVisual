@@ -1,0 +1,119 @@
+<ion-content [fullscreen]="true">
+  <div *ngIf="!attemptingSingUp;else spinner" class="container p-4" style="min-height: 100%">
+    <div class="row">
+      <div class="col-12 h1 heading mt-4">🚀 Create Account</div>
+      <div class="col-12 para ml-5">Sign up to get started!</div>
+    </div>
+    <div class="row mt-5">
+      <form [formGroup]="signUpForm">
+        <ion-item class="mb-3" lines="full">
+          <ion-label position="floating">Email</ion-label>
+          <ion-input
+            type="email"
+            placeholder="name@domain.com"
+            formControlName="email"
+            errorText="Invalid email"
+          ></ion-input>
+          <ion-note *ngIf="signUpForm.get('email')!.touched" slot="error"
+            >Invalid email format</ion-note
+          >
+        </ion-item>
+        <ion-item lines="full" errorText="Invalid password" class="mb-3">
+          <ion-label position="floating">Password</ion-label>
+          <ion-input
+            [type]="hidePassword[0]? 'password':'text'"
+            placeholder="**********"
+            formControlName="password"
+          ></ion-input>
+          <ion-button
+            size="default"
+            slot="end"
+            fill="clear"
+            (click)="togglePasswordVisibility(0)"
+            class="pt-3 icon-button"
+          >
+            <ion-icon
+              [name]="hidePassword[0] ? 'eye-off-outline' : 'eye-outline' "
+              color="primary"
+              class="iconEye"
+            ></ion-icon>
+          </ion-button>
+        </ion-item>
+        <ion-item lines="full" errorText="Invalid password">
+          <ion-label position="floating">Confirm Password</ion-label>
+          <ion-input
+            [type]="hidePassword[1]? 'password':'text'"
+            placeholder="**********"
+            formControlName="confirmPassword"
+          ></ion-input>
+          <ion-button
+            size="default"
+            slot="end"
+            fill="clear"
+            (click)="togglePasswordVisibility(1)"
+            class="pt-3 icon-button"
+          >
+            <ion-icon
+              [name]="hidePassword[1] ? 'eye-off-outline' : 'eye-outline' "
+              color="primary"
+              class="iconEye"
+            ></ion-icon>
+          </ion-button>
+        </ion-item>
+        <ion-button class="mb-3" id="pswd-hint" shape="round" fill="clear">
+          <ion-icon
+              [name]="'information-circle-outline'"
+              color="warning"
+              class="iconEye"
+            ></ion-icon>
+        </ion-button>
+        <ion-popover trigger="pswd-hint" triggerAction="click">
+          <ng-template>
+            <ion-content class="ion-padding">Password must be at least 8 characters long, contain 1 uppercase letter, 1 lowercase letter and 1 special character (i.e. @!#$).</ion-content>
+          </ng-template>
+        </ion-popover>
+        
+        <!-- <mat-hint>
+          <mat-icon
+            matTooltip="Password must be at least 8 characters long, contain 1 uppercase letter, 1 lowercase letter and 1 special character (i.e. @!#$)."
+            matTooltipPosition="below"
+            matTooltipShowDelay="100"
+            matTooltipHideDelay="200"
+            >info
+          </mat-icon>
+        </mat-hint> -->
+
+        <p class="signup-text">
+          I already have an account&nbsp;<a
+            routerLink="/login"
+            routerLinkActive="active"
+            >Sign In?</a
+          >
+        </p>
+
+        <ion-button
+          class="login-button mt-4 mb-3"
+          (click)="handleRegister()"
+          expand="block"
+          [disabled]="!signUpForm.valid"
+          >Sign Up</ion-button
+        >
+
+        <div class="separator mb-3 col-10 offset-1">Or</div>
+
+        <ion-button class="google-button" expand="block" color="danger"
+        (click)="handleGoogleAuth()"><ion-icon name="logo-google"></ion-icon>&nbsp;&nbsp;Google
+          Signup</ion-button
+        >
+      </form>
+    </div>
+  </div>
+  <ng-template #spinner>
+    <app-spinner [optionalMessage]="'Signing Up'"></app-spinner>
+  </ng-template>
+</ion-content>
+<ion-footer color="white">
+  <ion-toolbar>
+    <p class="copyright">All rights reserved Ⓒ ACoria 2023</p>
+  </ion-toolbar>
+</ion-footer>

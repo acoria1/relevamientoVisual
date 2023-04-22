@@ -24,3 +24,42 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
+
+/*BOOSTRAP*/
+@import "node_modules/bootstrap/dist/css/bootstrap.min.css";
+
+/*Material*/
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "https://use.fontawesome.com/releases/v5.5.0/css/all.css";
+
+/* global styles */
+.separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #6a6a6a;
+  }
+  
+  .separator::before,
+  .separator::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #bbbbbb;
+  }
+  
+  .separator:not(:empty)::before {
+    margin-right: .55em;
+  }
+  
+  .separator:not(:empty)::after {
+    margin-left: .55em;
+  }
+
+  div.spinner, div.splash-logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+  }
+  
