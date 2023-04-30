@@ -71,8 +71,8 @@ loadLoginForm(selectedMockUser : Feature){
       .then(() => {
         this.auth.afAuth.authState.subscribe((user) => {
           if (user) {
-            this._router.navigate(['/home']);
             this.attemptingSingIn = false;
+            this._router.navigate(['/home']);
           }
         });
       })

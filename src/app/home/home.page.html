@@ -1,17 +1,49 @@
-<ion-header [translucent]="true">
-  <ion-toolbar color="primary">
-    <ion-title>
-      Home
-    </ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="handleSingOut()">Sign Out</ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+<ng-container *ngIf="!signingOut;else spinner">
+  <ion-header [translucent]="true">
+    <ion-toolbar color="primary">
+      <ion-title>
+        Home
+      </ion-title>
+      <ion-buttons slot="end">
+        <ion-menu-toggle>
+        <ion-button>
+          <ion-icon slot="icon-only" name="settings-outline"></ion-icon>
+        </ion-button>
+      </ion-menu-toggle>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
 
-<ion-content class="ion-padding">
-  <div class="welcome-message">
-    <h1>Welcome to my app!</h1>
-    <p>Thanks for using our service.</p>
-  </div>
-</ion-content>
+  <ion-menu contentId="main-content" side="end">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title class="h1">Opciones</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <ion-list>
+        <ion-item button detail="false">
+            <ion-label>Mi Perfil</ion-label>
+            <ion-icon slot="end" name="person-circle-outline"></ion-icon>
+        </ion-item>
+      <ion-menu-toggle>
+        <ion-item button detail="false" (click)="handleSingOut()">
+            <ion-label>Cerrar Sesión</ion-label>
+            <ion-icon slot="end" name="exit-outline"></ion-icon>
+      </ion-item>
+      </ion-menu-toggle>
+      </ion-list>      
+    </ion-content>
+  </ion-menu>
+
+  <ion-content class="ion-padding" id="main-content">
+    <div class="welcome-message">
+      <h1>Welcome to my app!</h1>
+      <p>Thanks for using our service.</p>
+    </div>
+  </ion-content>
+</ng-container>
+
+<ng-template #spinner>
+  <app-spinner [optionalMessage]="'Cerrando Sesión'"></app-spinner>
+</ng-template>
