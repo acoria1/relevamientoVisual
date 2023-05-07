@@ -47,16 +47,17 @@ ion-footer {
     --ripple-color: #ffffff;
 }
 
-ion-item {
-    background: transparent;
-    // border: 1px solid #a9a7a2;
-    // border-radius: 8px;
-    --highlight-height: 1px;
-    --highlight-color-valid: #2e723d;
-    --highlight-color-focused: #eac402;
-    --highlight-color-invalid: #ff6e64;
-}
-
 .full-width{
     width: 100%;
 }
+
+// 
+ion-item {
+    background: transparent;
+    --highlight-height: 2px;
+    --highlight-color-focused: #51f3ff;
+    --highlight-color-valid: #efe866;
+    --highlight-color-invalid: #ff46be;
+    --border-color: #efe866;
+    --border-size : 2px;
+  }

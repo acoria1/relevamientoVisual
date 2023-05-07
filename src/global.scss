@@ -29,7 +29,7 @@
 @import "node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 /*Material*/
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+// @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import "https://use.fontawesome.com/releases/v5.5.0/css/all.css";
 
 /* global styles */
@@ -63,3 +63,13 @@
     min-height: 100vh;
   }
   
+  // 
+ion-item {
+  background: transparent;
+  --highlight-height: 2px;
+  --highlight-color-focused: #51f3ff;
+  --highlight-color-valid: #efe866;
+  --highlight-color-invalid: #ff46be;
+  --border-color: #efe866;
+  --border-size : 2px;
+}

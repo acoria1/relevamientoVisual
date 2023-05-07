@@ -1,4 +1,4 @@
-package io.ionic.starter;
+package io.acoria.relevamiento.visual;
 
 import com.getcapacitor.BridgeActivity;
 

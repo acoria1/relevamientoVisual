@@ -31,6 +31,7 @@ export class RegisterPage implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.signUpForm = this.fb.group({
+      'nombre' : ['', Validators.required],
       'email' : ['', [Validators.required, Validators.email]],
       'password' : ['', [Validators.required,Validators.pattern('((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,30})')]],
       'confirmPassword' : ['', [Validators.required,Validators.pattern('((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,30})')]]
@@ -53,7 +54,7 @@ export class RegisterPage implements OnInit, OnDestroy {
 
   handleRegister(){
     this.attemptingSingUp = true;
-    this.auth.SignUp(new User(this.signUpForm.get('email')!.value, "Nombre", "Apellido",12,"21313123",[]), this.signUpForm.get('password')!.value)
+    this.auth.SignUp(new User(this.signUpForm.get('email')!.value, this.signUpForm.get('nombre')!.value, "Apellido",12,"21313123",[]), this.signUpForm.get('password')!.value)
     .then((response)=>{
       if (response == "success"){
         setTimeout(() => {
@@ -63,11 +64,11 @@ export class RegisterPage implements OnInit, OnDestroy {
         this.attemptingSingUp = false;
         if ((<{ code : string, customData : any, name : string}>response).code === "auth/email-already-in-use"){
           this.emailAlreadyInUse = true;
-          this.presentToast("bottom","An account already exists for this email");
+          this.presentToast("bottom","El email ya está en uso");
         } 
         else if ((<{ code : string, customData : any, name : string}>response).code === "auth/invalid-email"){         
           this.invalidEmail = true;
-          this.presentToast("bottom","The email entered is invalid");
+          this.presentToast("bottom","El email ingresado tiene un formato inválido");
         }  
       }
     });

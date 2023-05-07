@@ -1,8 +1,8 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.acoria.plainLogin',
-  appName: 'Plain Login',
+  appId: 'io.acoria.relevamiento.visual',
+  appName: 'Relevamiento Visual',
   webDir: 'www',
   bundledWebRuntime: false,
   plugins: {

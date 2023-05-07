@@ -7,19 +7,30 @@
     <div class="row mt-5">
       <form [formGroup]="signUpForm">
         <ion-item class="mb-3" lines="full">
-          <ion-label position="floating">Correo Electrónico</ion-label>
+          <ion-label position="floating" color="warning">Nombre</ion-label>
+          <ion-input
+            type="text"
+            placeholder="Juan Gonzalez"
+            formControlName="nombre"
+          ></ion-input>
+          <ion-note *ngIf="signUpForm.get('nombre')!.touched" slot="error"
+            >Obligatorio</ion-note
+          >
+        </ion-item>
+        <ion-item class="mb-3" lines="full">
+          <ion-label position="floating" color="warning">Correo Electrónico</ion-label>
           <ion-input
             type="email"
-            placeholder="name@domain.com"
+            placeholder="nombre@dominio.com"
             formControlName="email"
-            errorText="Invalid email"
+            errorText="Email Invalido"
           ></ion-input>
           <ion-note *ngIf="signUpForm.get('email')!.touched" slot="error"
             >Email inválido</ion-note
           >
         </ion-item>
         <ion-item lines="full" errorText="Contraseña incorrecta" class="mb-3">
-          <ion-label position="floating">Contraseña</ion-label>
+          <ion-label position="floating" color="warning">Contraseña</ion-label>
           <ion-input
             [type]="hidePassword[0]? 'password':'text'"
             placeholder="**********"
@@ -40,7 +51,7 @@
           </ion-button>
         </ion-item>
         <ion-item lines="full" errorText="Contraseña incorrecta">
-          <ion-label position="floating">Re-ingresar contraseña</ion-label>
+          <ion-label position="floating" color="warning">Re-ingresar contraseña</ion-label>
           <ion-input
             [type]="hidePassword[1]? 'password':'text'"
             placeholder="**********"
@@ -74,47 +85,42 @@
             </ion-content>
           </ng-template>
         </ion-popover>
-        
-        <!-- <mat-hint>
-          <mat-icon
-            matTooltip="Password must be at least 8 characters long, contain 1 uppercase letter, 1 lowercase letter and 1 special character (i.e. @!#$)."
-            matTooltipPosition="below"
-            matTooltipShowDelay="100"
-            matTooltipHideDelay="200"
-            >info
-          </mat-icon>
-        </mat-hint> -->
 
         <p class="signup-text">
-          Ya tengo una cuenta&nbsp;<a
+          ¿Ya tienes una cuenta?&nbsp;<a
             routerLink="/login"
             routerLinkActive="active"
-            >Ingresar</a
+            >
+            <u class="font-weight-bold">Ingresar</u>
+            </a
           >
         </p>
 
         <ion-button
-          class="login-button mt-4 mb-3"
+          class="login-button mt-4 mb-3 text-dark"
           (click)="handleRegister()"
           expand="block"
           [disabled]="!signUpForm.valid"
-          >Registrarme</ion-button
-        >
+          strong="true"
+          color="warning"
+          >
+          Registrarme
+        </ion-button>
 
         <div class="separator mb-3 col-10 offset-1">O</div>
 
         <ion-button class="google-button" expand="block" color="danger"
-        (click)="handleGoogleAuth()"><ion-icon name="logo-google"></ion-icon>&nbsp;&nbsp;Ingresar con Google</ion-button
+        (click)="handleGoogleAuth()" strong="true"><ion-icon name="logo-google"></ion-icon>&nbsp;&nbsp;Ingresar con Google</ion-button
         >
       </form>
     </div>
   </div>
   <ng-template #spinner>
-    <app-spinner [optionalMessage]="'Signing Up'"></app-spinner>
+    <app-spinner [optionalMessage]="'Ingresando'"></app-spinner>
   </ng-template>
 </ion-content>
-<ion-footer color="white">
+<!-- <ion-footer color="white">
   <ion-toolbar>
     <p class="copyright">Derechos reservados ⒸACoria 2023</p>
   </ion-toolbar>
-</ion-footer>
+</ion-footer> -->

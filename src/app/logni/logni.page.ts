@@ -1,7 +1,7 @@
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, ToastController } from '@ionic/angular';
 import { User } from 'src/app/entities/user';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
@@ -30,7 +30,7 @@ export class LogniPage implements OnInit,OnDestroy {
 
 
   // constructor(public auth: Auth, private fb: FormBuilder, private _router : Router) { }
-  constructor(public auth: AuthService, private _router : Router, private fb:FormBuilder) { 
+  constructor(public auth: AuthService, private _router : Router, private fb:FormBuilder, private toastController: ToastController) { 
     
   }
 
@@ -77,9 +77,28 @@ loadLoginForm(selectedMockUser : Feature){
         });
       })
       .catch((error) => {
-      this.attemptingSingIn = false;
+        this.attemptingSingIn = false;
         this.invalidCredentials = true;
+        this.presentToast("bottom","No pudimos verificar tus credenciales, por favor vuelve a ingresarlas.");
       });
+  }
+
+  async presentToast(position: 'top' | 'middle' | 'bottom', displayMessage : string) {
+    const toast = await this.toastController.create({
+      message: displayMessage,
+      duration: 2500,
+      position: position,
+      icon: 'alert-circle-outline',
+      buttons : [
+        {
+          text: 'Dismiss',
+          role: 'cancel'
+        }
+      ],
+      color : 'warning'
+    });
+
+    await toast.present();
   }
 
   handleGoogleAuth(){

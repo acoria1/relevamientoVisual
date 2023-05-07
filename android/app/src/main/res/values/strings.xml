@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">plainLogin</string>
-    <string name="title_activity_main">plainLogin</string>
-    <string name="package_name">io.ionic.starter</string>
-    <string name="custom_url_scheme">io.ionic.starter</string>
+    <string name="app_name">relevamientoVisual</string>
+    <string name="title_activity_main">relevamientoVisual</string>
+    <string name="package_name">io.acoria.relevamiento.visual</string>
+    <string name="custom_url_scheme">io.acoria.relevamiento.visual</string>
 </resources>
