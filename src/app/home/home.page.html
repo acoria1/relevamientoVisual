@@ -1,15 +1,18 @@
 <ng-container *ngIf="!signingOut;else spinner">
   <ion-header [translucent]="false">
-    <ion-toolbar>
+    <ion-toolbar color="secondary">
       <ion-buttons slot="start">
-        <ion-button>
-          <ion-icon slot="icon-only" name="images-outline"></ion-icon>
+        <ion-button (click)="homeIconClicked()">
+          <ion-icon slot="icon-only" name="home-outline"></ion-icon>
         </ion-button>
       </ion-buttons>
+      <ion-title class='ion-text-center'>
+          {{galeryTitleText}}
+      </ion-title>
       <ion-buttons slot="end">
         <ion-menu-toggle>
         <ion-button>
-          <ion-icon slot="icon-only" name="settings-outline"></ion-icon>
+          <ion-icon slot="icon-only" name="menu-outline"></ion-icon>
         </ion-button>
       </ion-menu-toggle>
       </ion-buttons>
@@ -24,37 +27,62 @@
     </ion-header>
     <ion-content class="ion-padding">
       <ion-list>
-        <ion-item button detail="false">
-            <ion-label>Mi Perfil</ion-label>
-            <ion-icon slot="end" name="person-circle-outline" color="primary"></ion-icon>
+      <!-- <ion-menu-toggle>
+        <ion-item button detail="false" lines="full">
+          <ion-label>Mi Perfil</ion-label>
+          <ion-icon slot="end" name="person-circle-outline" size="large"></ion-icon>
         </ion-item>
+      </ion-menu-toggle> -->
       <ion-menu-toggle>
-        <ion-item button detail="false" (click)="handleSingOut()">
-            <ion-label>Cerrar Sesión</ion-label>
-            <ion-icon slot="end" name="exit-outline" color="primary"></ion-icon>
-      </ion-item>
+        <ion-item button detail="false" lines="full" (click)="mostrarPropias()">
+          <ion-label>Mis fotos</ion-label>
+          <ion-icon slot="end" name="images-outline" size="large"></ion-icon>
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle>
+        <ion-item button detail="false" lines="full" (click)="mostrarGraficos()">
+          <ion-label>Informes</ion-label>
+          <ion-icon slot="end" name="bar-chart-outline" size="large"></ion-icon>
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle>
+        <ion-item button detail="false" lines="full" (click)="handleSingOut()">
+          <ion-label>Cerrar Sesión</ion-label>
+          <ion-icon slot="end" name="exit-outline" size="large"></ion-icon>
+        </ion-item>
       </ion-menu-toggle>
       </ion-list>      
     </ion-content>
   </ion-menu>
 
   <ion-content class="content-with-full-height" id="main-content">
-    <ion-grid class="content-with-full-height">
-      <ion-row class="bg-image">
-        <ion-img
-        src="/assets/images/love_it.jpg"
-        alt="Love it Image"
-      ></ion-img>
-      </ion-row>
-      <ion-row class="divisor" style="height: 2%;"></ion-row>
-      <ion-row class="bg-image">
-        <ion-img
-        src="/assets/images/hate_it.jpg"
-        alt="Hate it Image"
-      ></ion-img>
-      </ion-row>
-    </ion-grid>
-    
+    <ng-container *ngIf="showGalery; else twoImagesOrGraphs">
+      <app-photo-galery [tipoPublicacion]="tipoPublicacionesMostradas"></app-photo-galery>
+    </ng-container>
+    <ng-template #twoImagesOrGraphs>
+      <ng-container *ngIf="showGraphs;else twoImages">
+        <app-graficos-page></app-graficos-page>
+      </ng-container>
+      <ng-template #twoImages>
+      <ion-grid class="content-with-full-height">
+        <ion-row class="bg-image">
+          <ion-img
+          src="/assets/images/love_it.jpg"
+          alt="Love it Image"
+          (click)="mostrarBuenas()"
+        ></ion-img>
+        </ion-row>
+        <ion-row class="divisor" style="height: 2%;"></ion-row>
+        <ion-row class="bg-image">
+          <ion-img
+          src="/assets/images/hate_it.jpg"
+          alt="Hate it Image"
+          (click)="mostrarMalas()"
+        ></ion-img>
+        </ion-row>
+      </ion-grid>
+      </ng-template>
+    </ng-template>
   </ion-content>
 </ng-container>
 

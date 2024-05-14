@@ -1,0 +1,28 @@
+<div *ngIf="publicacionConLikes != undefined">
+<ion-card color="warning" [hidden]="!loadedImage">
+  <img alt="imagen subida por usuario" [src]="publicacionConLikes.publicacion!.photoUrl" (load)="onImageLoaded()"
+  (click)="onImageClicked(publicacionConLikes.publicacion.id!)"/>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-row>{{publicacionConLikes.publicacion!.user.userName}}</ion-row>
+        <ion-row>{{publicacionConLikes.publicacion.fechaCreacion | date: 'dd/MM/yyyy'}}</ion-row>
+      </ion-col>
+      <ion-col size="auto">
+        <ion-icon #heartIcon *ngIf="displayLikeButton" 
+          (click)="onImageClicked(publicacionConLikes.publicacion.id!)" 
+          size="large"
+          [color]="(publicacionConLikes.liked === false) ? '' : 'danger'"
+          [name]="(publicacionConLikes.liked === false) ? 'heart-outline' : 'heart'">
+        </ion-icon>
+        <ion-icon *ngIf="displayDeleteBtn" 
+          (click)="onDeleteBtnClicked(publicacionConLikes.publicacion.id!)" 
+          size="large"
+          color="dark"
+          name="trash-outline">
+        </ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-card>
+</div>

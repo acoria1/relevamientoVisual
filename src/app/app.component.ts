@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
@@ -9,8 +9,14 @@ import { IonicModule } from '@ionic/angular';
   standalone: true,
   imports: [IonicModule],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   constructor(public _router : Router) {
-    this._router.navigateByUrl('splash');
+  }
+
+  ngOnInit(){
+    setTimeout(() => {
+      //make time for android unskippable icon screen to end
+      this._router.navigateByUrl('splash');
+    }, 1500);
   }
 }

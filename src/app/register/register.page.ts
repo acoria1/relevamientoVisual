@@ -54,7 +54,7 @@ export class RegisterPage implements OnInit, OnDestroy {
 
   handleRegister(){
     this.attemptingSingUp = true;
-    this.auth.SignUp(new User(this.signUpForm.get('email')!.value, this.signUpForm.get('nombre')!.value, "Apellido",12,"21313123",[]), this.signUpForm.get('password')!.value)
+    this.auth.SignUp(new User(this.signUpForm.get('email')!.value, this.signUpForm.get('nombre')!.value, "Apellido",18,"21313123",[]), this.signUpForm.get('password')!.value)
     .then((response)=>{
       if (response == "success"){
         setTimeout(() => {
@@ -82,7 +82,7 @@ export class RegisterPage implements OnInit, OnDestroy {
       icon: 'alert-outline',
       buttons : [
         {
-          text: 'Dismiss',
+          text: 'Minimizar',
           role: 'cancel'
         }
       ],

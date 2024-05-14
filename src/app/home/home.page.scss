@@ -30,6 +30,34 @@ ion-menu::part(backdrop) {
 
 ion-menu::part(container) {
   border-radius: 20px 0px 0px 20px;
-
   box-shadow: 4px 0px 16px rgba(255, 0, 255, 0.18);
+}
+
+ion-menu{
+  --background: var(--ion-color-primary) !important;
+  ion-header{
+    --background:var(--ion-color-primary-contrast) !important;
+    ion-toolbar{
+      --background:var(--ion-color-medium) !important;
+      ion-title{
+        --color: #FFFFFF !important
+      }
+    }
+  }
+  ion-content{            
+      --background: var(--ion-color-primary) !important;
+      ion-list{ 
+          background: var(--ion-color-primary) !important;
+          --color: #FFFFFF !important;
+          ion-menu-toggle{
+            //--background: var(--ion-color-primary) !important;
+            ion-item{
+              --background: var(--ion-color-primary) !important;
+                --color: #FFFFFF !important;
+                ion-label{--color:#FFFFFF !important;} 
+                ion-icon{ padding-right: 10px !important; color:#FFFFFF !important}
+            }
+          }  
+      }
+  }
 }

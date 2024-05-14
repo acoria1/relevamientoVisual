@@ -102,9 +102,10 @@ export class AuthService {
         let user = result.user;
         this.SetUserData(user!.uid,new User (user!.email!,user!.displayName ?? '','',0,'',[user!.photoURL ?? '']));
         console.log(result.user);
+        this.router.navigate(['/home']);
       })
       .catch((error) => {
-        window.alert("An error occured when attemping sign in");
+        // window.alert("An error occured when attemping sign in");
       });
   }
 
@@ -121,10 +122,9 @@ export class AuthService {
 
   // Sign out
   SignOut() {
-    return this.afAuth.signOut().then(() => {
-      localStorage.removeItem('user');
-      localStorage.removeItem('auth');
-      this.router.navigate(['login']);
+    return this.afAuth.signOut().then(()=> {
+    localStorage.removeItem('user');
+    localStorage.removeItem('auth');
     });
   }
 

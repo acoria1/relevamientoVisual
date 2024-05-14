@@ -16,11 +16,17 @@ export class SplashPage implements OnInit {
   startTransitionOut : boolean = false;
   constructor(public router:Router) { }
 
+  // ngOnInit() {
+  //   setTimeout(() => {
+  //     this.startTransitionOut = true;
+  //     this.transitionOut();
+  //   }, 2000);
+  // }
+
   ngOnInit() {
     setTimeout(() => {
-      this.startTransitionOut = true;
-      this.transitionOut();
-    }, 2000);
+      this.router.navigateByUrl('login');
+    }, 3000);
   }
 
   transitionOut(){

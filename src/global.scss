@@ -73,3 +73,21 @@ ion-item {
   --border-color: #efe866;
   --border-size : 2px;
 }
+
+ion-action-sheet.photo-options-sheet {
+  --background: #f58840;
+  --backdrop-opacity: 0.6;
+  --button-background-selected: #e97223;
+  --button-color: #000000;
+  --color: #fff;
+  /* role: "destructive" button iOS styling override */
+  --ion-color-danger: #000000;
+}
+
+.custom-centered{
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+}

@@ -47,10 +47,9 @@ export class LogniPage implements OnInit,OnDestroy {
     })
   }
 
-  @HostListener('unloaded')
   ngOnDestroy() {
     console.log('Cleared');
-}
+  }
 
 loadLoginForm(selectedMockUser : Feature){
   let selectedUser : any =  mockUsers.find(u => u.uid == selectedMockUser.id)!;
@@ -71,8 +70,12 @@ loadLoginForm(selectedMockUser : Feature){
       .then(() => {
         this.auth.afAuth.authState.subscribe((user) => {
           if (user) {
-            this.attemptingSingIn = false;
-            this._router.navigate(['/home']);
+            setTimeout(() => {
+              this.attemptingSingIn = false;
+              this.loginForm.get('email')?.setValue('');
+              this.loginForm.get('password')?.setValue('');
+              this._router.navigate(['/home']);
+            }, 1500);
           }
         });
       })
@@ -91,7 +94,7 @@ loadLoginForm(selectedMockUser : Feature){
       icon: 'alert-circle-outline',
       buttons : [
         {
-          text: 'Dismiss',
+          text: 'Minimizar',
           role: 'cancel'
         }
       ],
@@ -102,7 +105,7 @@ loadLoginForm(selectedMockUser : Feature){
   }
 
   handleGoogleAuth(){
-    this.auth.GoogleAuth(); 
+    this.auth.GoogleAuth();
   }
 
 }

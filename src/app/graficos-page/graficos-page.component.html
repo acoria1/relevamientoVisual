@@ -1,0 +1,26 @@
+<ng-container *ngIf="!loading;else spinner">
+  <div class="graph-container" [style.background-color]="segment.value == 'lindo' ? '#effbf1' : '#fce7e7'">
+    <div [hidden]="segment.value != 'lindo'" class="custom">
+        <div [chart] ="cosasLindasChart"></div>
+    </div>
+    <div [hidden]="segment.value != 'feo'" class="custom px-3">
+      <div [chart]="cosasFeasChart"></div>
+    </div>
+  </div>
+</ng-container>
+<ng-template #spinner>
+  <app-spinner></app-spinner>
+</ng-template>
+  
+<ion-footer>
+  <ion-toolbar color="medium">
+    <ion-segment value="lindo" #segment>
+      <ion-segment-button value="lindo">
+        <ion-label>Cosas Lindas</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="feo">
+        <ion-label>Cosas feas</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-footer>

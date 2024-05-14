@@ -3,10 +3,10 @@ const dummyImg = "https://firebasestorage.googleapis.com/v0/b/clinica-online-ed9
 export const mockUsers : any[] = [
     
      //admin verified
-     {uid:'100001', email : 'vhqtftpagtpwsllkxx@bbitq.com', password: "Password_123", label : 'Admin', imagen : '/assets/images/dummy-users/dummy-user-red.png'},
+     {uid:'100001', email : 'vhqtftpagtpwsllkxx@bbitq.com', password: "Password_123", label : 'Agustin', imagen : '/assets/images/dummy-users/dummy-user-red.png'},
      //verified
-     {uid:'100002', email : 'hnitisnpwqlyilpcxl@tcwlx.com', password: "Password_123", label : 'Verificado', imagen : '/assets/images/dummy-users/dummy-user-blue.png'},
+     {uid:'100002', email : 'hnitisnpwqlyilpcxl@tcwlx.com', password: "Password_123", label : 'Ivan', imagen : '/assets/images/dummy-users/dummy-user-blue.png'},
      //not verified
-     {uid:'100003', email : 'afurtzywqmhuihnsyj@tpwlb.com', password: "Password_123", label : 'No Verificado', imagen : '/assets/images/dummy-users/dummy-user-yellow.png'},
+     {uid:'100003', email : 'afurtzywqmhuihnsyj@tpwlb.com', password: "Password_123", label : 'Laura', imagen : '/assets/images/dummy-users/dummy-user-yellow.png'},
 
 ]

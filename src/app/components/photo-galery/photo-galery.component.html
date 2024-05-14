@@ -1,0 +1,95 @@
+<!-- <ion-content>
+  <ion-grid [hidden]="!allImagesLoaded && !uploadingPhoto" *ngIf="publicacionesConLikes.length > 0">
+    <ion-row>
+    <ion-col size="6" *ngFor="let publicacionConLikes of publicacionesConLikes; index as position">
+      <app-publicacion-detalle 
+        (publicacionClicked)="publicacionClickeada($event)"
+        (imageLoaded)="imagenCargada($event)"
+        (deleteBtnClicked)="deleteRequestReceived($event)"
+        [publicacionConLikes]="publicacionConLikes"
+        [displayLikeButton]="tipoPublicacion == 'Propias' ? false : true"
+        [displayDeleteBtn]="tipoPublicacion == 'Propias' ? true : false"
+        ></app-publicacion-detalle>
+    </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-fab [hidden]="!allImagesLoaded && !uploadingPhoto" *ngIf="(tipoPublicacion == 'Buena' || tipoPublicacion == 'Mala')" vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button (click)="handleRealizarPublicacion()">
+      <ion-icon name="camera"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  empty content placeholder 
+  <ng-container *ngIf="imagenesCargadasCount === 0 && allImagesLoaded && !uploadingPhoto">
+    <div class="custom-centered">
+      <ion-text>
+        <h1 class="ion-text-center"> No hay fotos aquí</h1>
+        <h1 class="ion-text-center"> 😔 </h1>
+      </ion-text>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="!allImagesLoaded || uploadingPhoto">
+    <app-spinner [optionalMessage]="uploadingPhoto ? 'Subiendo Foto' : 'Cargando fotos'"></app-spinner>
+  </ng-container>
+</ion-content>
+spinner -->
+
+<ion-content>
+  <ng-container *ngIf="(!uploadingPhoto && (publicacionesConLikes$ | async)) as listPublicaciones; else loading">
+    <!-- <p>length: {{listPublicaciones.length}} imagenesCargadasCount: {{imagenesCargadasCount}} uploadingPhoto: {{uploadingPhoto}} </p> -->
+  <ion-grid *ngIf="listPublicaciones.length > 0" [hidden]="listPublicaciones.length != imagenesCargadasCount">
+    <ion-row>
+      <ion-col size="6" *ngFor="let publicacionConLikes of listPublicaciones; index as position">
+        <app-publicacion-detalle 
+          (publicacionClicked)="publicacionClickeada($event)"
+          (imageLoaded)="imagenCargada($event)"
+          (deleteBtnClicked)="deleteRequestReceived($event)"
+          [publicacionConLikes]="publicacionConLikes"
+          [displayLikeButton]="tipoPublicacion == 'Propias' ? false : true"
+          [displayDeleteBtn]="tipoPublicacion == 'Propias' ? true : false"
+          ></app-publicacion-detalle>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <!--  -->
+  <ion-fab *ngIf="(tipoPublicacion == 'Buena' || tipoPublicacion == 'Mala')" 
+    [hidden]="listPublicaciones.length != imagenesCargadasCount && !uploadingPhoto"  vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button (click)="handleRealizarPublicacion()">
+      <ion-icon name="camera"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <!-- empty content placeholder  -->
+  <div  *ngIf="listPublicaciones.length === 0 && !uploadingPhoto" class="custom-centered">
+    <ion-text>
+      <h1 class="ion-text-center"> No hay fotos aquí</h1>
+      <h1 class="ion-text-center"> 😔 </h1>
+    </ion-text>
+  </div>
+  <app-spinner 
+  *ngIf="listPublicaciones.length != imagenesCargadasCount" 
+  [optionalMessage]="'Cargando fotos...'">
+  </app-spinner>
+</ng-container>
+
+
+
+  <ng-template #loading >
+    <app-spinner 
+    *ngIf="!uploadingPhoto"
+    [optionalMessage]="'Cargando pagina...'">
+    </app-spinner>
+    <app-spinner 
+    *ngIf="uploadingPhoto" 
+    [optionalMessage]="'Subiendo Foto...'">
+    </app-spinner>
+  </ng-template>
+</ion-content>
+
+<!-- *ngIf="!(publicacionesConLikes$ | async)"  -->
+
+
+  
+
+
+
+
